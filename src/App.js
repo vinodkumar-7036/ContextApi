@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React, { createContext, useState } from "react";
+import Count from "./Count";
+import Display from "./Display";
+import Material from "./Material";
+
+export const store = createContext();
 
 function App() {
+  const [data, setData] = useState([
+    { brandname: "Honor" },
+    { brandname: "Realme" },
+    { brandname: "Iphone" },
+    { brandname: "MI" },
+  ]);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <store.Provider value={{ data, setData }}>
+        <Count />
+        <Display />
+      </store.Provider>
+      <Material />
     </div>
   );
 }
